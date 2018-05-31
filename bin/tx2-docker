@@ -48,9 +48,8 @@ if [[ $# -ge 2 && $1 == "run" ]]; then
         build_docker_args
 	build_env
 
-	DOCKER_OPTS="-e LD_LIBRARY_PATH=$LD_LIBRARY_PATH $NV_DOCKER_ARGS ${@:2}"
-        echo "docker run $DOCKER_OPTS"
-        docker run $DOCKER_OPTS
+        echo "docker run -e LD_LIBRARY_PATH=$LD_LIBRARY_PATH $NV_DOCKER_ARGS ${@:2}"
+        docker run -e LD_LIBRARY_PATH=$LD_LIBRARY_PATH $NV_DOCKER_ARGS "${@:2}"
 else
         docker $@
 fi
